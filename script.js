@@ -325,7 +325,7 @@ Board.prototype.makeEmojiScoreBoard = function () {
     } else {
         banner = "Game over, you lost!\n\n";
     }
-    banner += "Slidle " + board.movesLeft + "/" + board.movesAvailable + "\n\n";
+    banner += "Slidle " + this.movesLeft + "/" + this.movesAvailable + "\n\n";
     for (var i = 0; i < this.tiles.length; i++) {
         if (this.tiles[i].isSolved() && !this.tiles[i].isBlank()) {
             banner += green;
@@ -338,6 +338,7 @@ Board.prototype.makeEmojiScoreBoard = function () {
             banner += "\n";
         }
     }
+    banner += "\n";
 
     return banner;
 };
@@ -349,6 +350,12 @@ Board.prototype.showScore = function () {
     var banner = board.makeEmojiScoreBoard();
     var finalScore = document.createTextNode(banner);
     emojis.appendChild(finalScore);
+    // Add copy to clipboard button
+    var copyButton = document.createElement("button");
+    var buttonText = document.createTextNode("Copy to clipboard");
+    copyButton.appendChild(buttonText);
+    copyButton.addEventListener("click", copyToClipboard);
+    emojis.appendChild(copyButton);
 };
 
 Board.prototype.print = function () {
@@ -391,6 +398,11 @@ function onDrop(event) {
     if (!board.canContinue()) {
         board.showScore();
     }
+}
+
+function copyToClipboard() {
+    var text = board.makeEmojiScoreBoard();
+    navigator.clipboard.writeText(text);
 }
 
 // Main
