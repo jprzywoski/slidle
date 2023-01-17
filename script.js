@@ -97,8 +97,8 @@ var Board = function () {
     this.allTilesInPlace = false;
     this.movesAvailable = 15;
     this.movesLeft = this.movesAvailable;
-    // Drawn from Pareto distribution
-    this.scramblingStrengths = [5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 8, 8, 8, 9, 10];
+    // Drawn from Power distribution
+    this.scramblingStrengths = [5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 7];
     this.scramblingStrength = this.scramblingStrengths[Math.floor(myrng() * this.scramblingStrengths.length)];
 
     var selectedWords = this.generateRandomWordlist();
