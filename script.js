@@ -26,10 +26,6 @@ Tile.prototype.getText = function () {
     return this.text;
 };
 
-Tile.prototype.getLocation = function () {
-    return { "row": this.row, "col": this.col };
-};
-
 Tile.prototype.isBlank = function () {
     return this.text === " ";
 };
@@ -48,10 +44,6 @@ Tile.prototype.isAdjacent = function (other) {
         }
     }
     return false;
-};
-
-Tile.prototype.canMoveTo = function (other) {
-    return other.isBlank() && this.isAdjacent(other);
 };
 
 Tile.prototype.setMovable = function (movable) {
@@ -98,8 +90,7 @@ var Board = function () {
     this.movesAvailable = 15;
     this.movesLeft = this.movesAvailable;
     // TODO do more difficulty level tweaking
-    // Drawn from Power distribution - np.array(sorted(8-np.random.power(3, size=200)*7), dtype=int)
-    this.scramblingStrengths = [5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 7];
+    this.scramblingStrengths = [6, 6, 6, 7, 7, 8];
     this.scramblingStrength = this.scramblingStrengths[Math.floor(myrng() * this.scramblingStrengths.length)];
 
     var selectedWords = this.generateRandomWordlist();
@@ -412,6 +403,6 @@ var now = new Date();
 var utc_timestamp = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
 var myrng = new Math.seedrandom(utc_timestamp);
 // De-comment this to get a new board every time
-// var myrng = Math.random;
+var myrng = Math.random;
 
 var board = new Board();
