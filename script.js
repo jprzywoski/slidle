@@ -403,6 +403,6 @@ var now = new Date();
 var utc_timestamp = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
 var myrng = new Math.seedrandom(utc_timestamp);
 // De-comment this to get a new board every time
-var myrng = Math.random;
+// var myrng = Math.random;
 
 var board = new Board();
